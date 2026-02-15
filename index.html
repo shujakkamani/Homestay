@@ -1,0 +1,868 @@
+﻿<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homestay Kami – Penginapan Selesa Seperti Di Rumah Sendiri</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#1a3c34;--primary-light:#2a5c4e;--accent:#c8956c;--accent-light:#e8c4a8;--cream:#faf6f1;--cream-dark:#f0e8df;--white:#fff;--text:#2d2d2d;--text-light:#6b6b6b;--whatsapp:#25D366;--whatsapp-dark:#1da851;--shadow:0 4px 24px rgba(0,0,0,.08);--shadow-lg:0 12px 48px rgba(0,0,0,.12);--radius:16px;--radius-sm:10px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:hidden}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--cream);line-height:1.7}
+
+/* NAVBAR */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06);transition:.3s}
+.navbar-inner{max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--primary);text-decoration:none;letter-spacing:-.5px}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;color:var(--text);font-size:.9rem;font-weight:500;transition:.3s;position:relative}
+.nav-links a:hover{color:var(--primary)}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);transition:.3s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{background:var(--primary)!important;color:var(--white)!important;padding:10px 24px!important;border-radius:50px!important;font-weight:600!important}
+.nav-cta:hover{background:var(--primary-light)!important}
+.nav-cta::after{display:none!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{width:24px;height:2px;background:var(--text);transition:.3s;display:block}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--primary) 0%,#0d2620 100%)}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 2px 2px,rgba(255,255,255,.03) 1px,transparent 0);background-size:40px 40px}
+.hero-inner{max-width:1200px;margin:0 auto;padding:120px 24px 80px;position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,149,108,.15);border:1px solid rgba(200,149,108,.3);color:var(--accent-light);padding:8px 20px;border-radius:50px;font-size:.85rem;font-weight:500;margin-bottom:28px;animation:fadeInUp .8s ease}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,3.8rem);color:var(--white);line-height:1.15;margin-bottom:20px;font-weight:700;animation:fadeInUp .8s ease .1s both}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:1.1rem;color:rgba(255,255,255,.75);margin-bottom:36px;max-width:500px;line-height:1.8;animation:fadeInUp .8s ease .2s both}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:14px;animation:fadeInUp .8s ease .3s both}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:50px;font-size:.95rem;font-weight:600;text-decoration:none;cursor:pointer;border:none;transition:.3s;font-family:'DM Sans',sans-serif}
+.btn svg{width:18px;height:18px}
+.btn-primary{background:var(--accent);color:var(--white)}
+.btn-primary:hover{background:#b8854f;transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,149,108,.35)}
+.btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.3)}
+.btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.btn-whatsapp{background:var(--whatsapp);color:var(--white)}
+.btn-whatsapp:hover{background:var(--whatsapp-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.35)}
+.btn-sm{padding:12px 24px;font-size:.9rem}
+
+.hero-visual{position:relative;animation:fadeInUp .8s ease .4s both}
+.hero-image-main{width:100%;height:420px;border-radius:24px;background:linear-gradient(135deg,rgba(200,149,108,.3),rgba(26,60,52,.5));display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid rgba(255,255,255,.1);position:relative}
+.hero-image-main::before{content:'🏡';font-size:80px;opacity:.5}
+.hero-image-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.85rem}
+.hero-stats{position:absolute;bottom:-30px;left:20px;right:20px;background:var(--white);border-radius:var(--radius);padding:20px 28px;display:flex;justify-content:space-around;box-shadow:var(--shadow-lg)}
+.hero-stat{text-align:center}
+.hero-stat-number{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--primary)}
+.hero-stat-label{font-size:.78rem;color:var(--text-light);font-weight:500}
+
+/* SECTIONS */
+.section{padding:100px 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:60px}
+.section-tag{display:inline-block;background:rgba(200,149,108,.12);color:var(--accent);padding:6px 18px;border-radius:50px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);color:var(--primary);margin-bottom:14px;font-weight:700}
+.section-subtitle{font-size:1.05rem;color:var(--text-light);max-width:600px;margin:0 auto}
+
+/* LISTINGS */
+.listings-section{background:var(--white)}
+.listing-card{background:var(--cream);border-radius:20px;overflow:hidden;margin-bottom:48px;border:1px solid rgba(0,0,0,.04);transition:.3s}
+.listing-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.listing-number{display:inline-flex;align-items:center;gap:10px;padding:20px 28px 0}
+.listing-number-badge{background:var(--primary);color:var(--white);width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
+.listing-number-text{font-size:.8rem;color:var(--text-light);text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
+.listing-content{padding:20px 28px 28px}
+.listing-name{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--primary);margin-bottom:8px;font-weight:700}
+.listing-tagline{font-size:.95rem;color:var(--text-light);margin-bottom:20px}
+.listing-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.gallery-item{position:relative;border-radius:var(--radius-sm);overflow:hidden;aspect-ratio:4/3;background:linear-gradient(135deg,#e8ddd4,#d4c8bc);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:.3s}
+.gallery-item:hover{transform:scale(1.03)}
+.gallery-item img{width:100%;height:100%;object-fit:cover}
+.gallery-item-label{font-size:.75rem;color:var(--text-light);font-weight:500;margin-top:6px}
+.gallery-item-icon{font-size:2rem;margin-bottom:4px}
+.listing-features{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+.feature-tag{display:inline-flex;align-items:center;gap:6px;background:var(--white);padding:8px 16px;border-radius:50px;font-size:.85rem;font-weight:500;color:var(--text);border:1px solid rgba(0,0,0,.06)}
+.features-toggle{display:none;width:100%;padding:8px 0;margin-bottom:16px;background:none;border:none;color:var(--accent);font-size:.85rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.3s}
+.feature-tag svg{width:16px;height:16px;color:var(--accent)}
+.listing-buttons{display:flex;flex-wrap:wrap;gap:12px}
+
+/* WHY US */
+.why-section{background:linear-gradient(135deg,var(--primary) 0%,#0d2620 100%);position:relative;overflow:hidden}
+.why-section::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 2px 2px,rgba(255,255,255,.02) 1px,transparent 0);background-size:40px 40px}
+.why-section .section-tag{background:rgba(200,149,108,.2)}
+.why-section .section-title{color:var(--white)}
+.why-section .section-subtitle{color:rgba(255,255,255,.65)}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;z-index:2}
+.why-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:32px 24px;text-align:center;transition:.3s;backdrop-filter:blur(10px)}
+.why-card:hover{background:rgba(255,255,255,.1);transform:translateY(-6px);border-color:rgba(200,149,108,.3)}
+.why-icon{width:60px;height:60px;background:rgba(200,149,108,.15);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:1.6rem}
+.why-card h3{font-family:'Playfair Display',serif;color:var(--white);font-size:1.15rem;margin-bottom:10px}
+.why-card p{color:rgba(255,255,255,.6);font-size:.9rem;line-height:1.7}
+.why-quote{text-align:center;margin-top:50px;padding-top:50px;border-top:1px solid rgba(255,255,255,.08);position:relative;z-index:2}
+.why-quote p{font-family:'Playfair Display',serif;font-size:1.4rem;color:rgba(255,255,255,.85);font-style:italic;max-width:650px;margin:0 auto;line-height:1.7}
+
+/* FACILITY */
+.facility-section{background:var(--cream)}
+.facility-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.facility-item{border-radius:var(--radius-sm);overflow:hidden;aspect-ratio:4/3;background:var(--cream-dark);border:1px solid rgba(0,0,0,.04);transition:.3s;cursor:pointer}
+.facility-item:hover{transform:scale(1.03);box-shadow:var(--shadow)}
+.facility-item img{width:100%;height:100%;object-fit:cover}
+
+/* PRICING */
+.pricing-section{background:var(--white)}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.pricing-card{background:var(--white);border-radius:20px;padding:36px 28px;text-align:center;border:1px solid rgba(0,0,0,.04);transition:.3s;position:relative}
+.pricing-card.featured{border:2px solid var(--accent);transform:scale(1.03)}
+.pricing-card.featured::before{content:'Popular';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:var(--white);padding:4px 20px;border-radius:50px;font-size:.78rem;font-weight:600}
+.pricing-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.pricing-card.featured:hover{transform:scale(1.03) translateY(-4px)}
+.pricing-card h3{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--primary);margin-bottom:8px}
+.pricing-price{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:var(--primary);margin:16px 0 6px}
+.pricing-price span{font-size:1rem;color:var(--text-light);font-family:'DM Sans',sans-serif}
+.pricing-note{font-size:.85rem;color:var(--text-light);margin-bottom:24px}
+.pricing-features{list-style:none;text-align:left;margin-bottom:28px}
+.pricing-features li{padding:8px 0;font-size:.9rem;color:var(--text);display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(0,0,0,.04)}
+.pricing-features li:last-child{border-bottom:none}
+.pricing-features li svg{width:18px;height:18px;color:var(--whatsapp);flex-shrink:0}
+.check-svg{width:18px;height:18px;color:var(--whatsapp);flex-shrink:0}
+
+/* TESTIMONIALS */
+.testimonial-section{background:var(--white)}
+.testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testimonial-card{background:var(--cream);border-radius:var(--radius);padding:16px;border:1px solid rgba(0,0,0,.04);transition:.3s}
+.testimonial-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.testimonial-stars{color:#f5a623;font-size:1rem;margin-bottom:16px;letter-spacing:2px}
+.testimonial-text{font-size:1rem;color:var(--text);line-height:1.8;margin-bottom:20px;font-style:italic}
+.testimonial-chat-image{width:100%;border-radius:var(--radius-sm);overflow:hidden;background:#e5ddd5;display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,0,0,.06)}
+.testimonial-chat-image img{width:100%;height:100%;object-fit:cover}
+.chat-placeholder{text-align:center;color:var(--text-light);font-size:.8rem;padding:20px}
+.chat-placeholder-icon{font-size:2.5rem;margin-bottom:8px}
+.testimonial-author{display:flex;align-items:center;gap:14px}
+.testimonial-avatar{width:48px;height:48px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:700;font-size:1rem}
+.testimonial-name{font-weight:600;font-size:.95rem;color:var(--primary)}
+.testimonial-role{font-size:.82rem;color:var(--text-light)}
+
+/* CALENDAR */
+.calendar-section{background:var(--cream)}
+.calendar-container{max-width:900px;margin:0 auto;background:var(--white);border-radius:20px;padding:32px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.04)}
+.calendar-iframe-wrapper{width:100%;min-height:500px;border-radius:var(--radius-sm);overflow:hidden;background:var(--cream-dark);display:flex;align-items:center;justify-content:center;border:2px dashed rgba(0,0,0,.1)}
+.calendar-iframe-wrapper iframe{width:100%;height:500px;border:none}
+.calendar-placeholder{text-align:center;color:var(--text-light);padding:40px}
+.calendar-placeholder-icon{font-size:3rem;margin-bottom:12px}
+.calendar-placeholder p{font-size:.9rem}
+.calendar-placeholder code{background:rgba(0,0,0,.06);padding:2px 8px;border-radius:4px;font-size:.82rem}
+
+/* CONTACT */
+.contact-section{background:var(--white)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.contact-info-card{background:var(--cream);border-radius:20px;padding:36px;border:1px solid rgba(0,0,0,.04)}
+.contact-item{display:flex;align-items:flex-start;gap:16px;margin-bottom:28px}
+.contact-item:last-child{margin-bottom:0}
+.contact-icon{width:48px;height:48px;background:var(--primary);border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1.2rem;flex-shrink:0}
+.contact-detail h4{font-size:.95rem;color:var(--primary);margin-bottom:4px;font-weight:600}
+.contact-detail p{font-size:.9rem;color:var(--text-light);line-height:1.6}
+.contact-detail a{color:var(--accent);text-decoration:none;font-weight:600}
+.contact-map{border-radius:20px;overflow:hidden;height:380px;background:var(--cream-dark);display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,0,0,.04)}
+.contact-map iframe{width:100%;height:100%;border:none}
+.map-placeholder{text-align:center;color:var(--text-light);font-size:.85rem}
+.map-placeholder-icon{font-size:3rem;margin-bottom:8px}
+
+/* FOOTER */
+.footer{background:var(--primary);color:rgba(255,255,255,.65);padding:48px 24px 28px}
+.footer-inner{max-width:1200px;margin:0 auto;text-align:center}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:12px}
+.footer-logo span{color:var(--accent)}
+.footer p{font-size:.88rem;margin-bottom:20px}
+.footer-links{display:flex;justify-content:center;gap:28px;margin-bottom:28px}
+.footer-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.85rem;transition:.3s}
+.footer-links a:hover{color:var(--white)}
+.footer-divider{height:1px;background:rgba(255,255,255,.08);margin-bottom:20px}
+.footer-copyright{font-size:.8rem;color:rgba(255,255,255,.35)}
+
+/* FLOATING WA */
+.floating-wa{position:fixed;bottom:28px;right:28px;z-index:9999;display:flex;align-items:center;gap:10px}
+.floating-wa-tooltip{background:var(--white);color:var(--text);padding:10px 18px;border-radius:12px;font-size:.85rem;font-weight:500;box-shadow:var(--shadow-lg);white-space:nowrap;opacity:0;transform:translateX(10px);transition:.3s;pointer-events:none}
+.floating-wa:hover .floating-wa-tooltip{opacity:1;transform:translateX(0)}
+.floating-wa-btn{width:60px;height:60px;background:var(--whatsapp);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.4);transition:.3s;text-decoration:none;animation:pulse-wa 2s infinite}
+.floating-wa-btn:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(37,211,102,.5)}
+.floating-wa-btn svg{width:30px;height:30px;fill:white}
+
+@keyframes pulse-wa{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.4)}50%{box-shadow:0 6px 36px rgba(37,211,102,.6)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+.animate-on-scroll{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.animate-on-scroll.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:968px){
+.hero-inner{grid-template-columns:1fr;text-align:center;padding-top:100px}
+.hero p{margin:0 auto 36px}
+.hero-buttons{justify-content:center}
+.hero-visual{max-width:500px;margin:0 auto}
+.hero-image-main{height:280px}
+.why-grid{grid-template-columns:repeat(2,1fr)}
+.facility-grid{grid-template-columns:repeat(3,1fr)}
+.pricing-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto}
+.pricing-card.featured{transform:none}
+.pricing-card.featured:hover{transform:translateY(-4px)}
+.testimonial-grid{grid-template-columns:repeat(2,1fr)}
+.contact-grid{grid-template-columns:1fr}
+.nav-links{display:none}
+.hamburger{display:flex}
+.nav-links.active{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--white);padding:20px 24px;box-shadow:var(--shadow);gap:16px}
+}
+@media(max-width:640px){
+.navbar-inner{padding:12px 16px}
+.logo{font-size:1.1rem}
+.logo img{width:48px!important;margin-right:6px!important}
+.section{padding:70px 16px}
+.hero{min-height:auto}
+.hero-inner{padding:100px 16px 60px;gap:30px}
+.hero-image-main{height:200px}
+.hero-stats{position:relative;bottom:auto;left:auto;right:auto;margin-top:16px;flex-direction:row;gap:12px;padding:16px 12px;border-radius:var(--radius-sm)}
+.hero-stat-number{font-size:1.2rem}
+.hero-stat-label{font-size:.7rem}
+.hero-visual{margin-bottom:0}
+.hero-buttons{flex-direction:column;align-items:center}
+.btn{width:100%;justify-content:center}
+.listing-gallery{grid-template-columns:repeat(2,1fr)}
+.listing-content{padding:16px 20px 24px}
+.listing-number{padding:16px 20px 0}
+.why-grid{grid-template-columns:1fr}
+.facility-grid{grid-template-columns:repeat(2,1fr)}
+.listing-features{max-height:44px;overflow:hidden;transition:max-height .4s ease}
+.listing-features.expanded{max-height:500px}
+.features-toggle{display:block}
+.floating-wa-tooltip{display:none}
+.contact-info-card{padding:24px}
+.calendar-container{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+<div class="navbar-inner">
+<a href="#" class="logo"><img src="img/logo.svg" alt="logo" style="width: 84px; vertical-align: middle; margin-right: 10px;"> Avanzee <span>Legacy</span></a>
+<ul class="nav-links" id="navLinks">
+<li><a href="#homestay">Homestay</a></li>
+<li><a href="#kenapa">Kenapa Kami</a></li>
+<li><a href="#kemudahan">Kemudahan</a></li>
+<li><a href="#harga">Harga</a></li>
+<li><a href="#testimoni">Testimoni</a></li>
+<li><a href="#hubungi">Hubungi</a></li>
+<li><a href="https://wa.me/60145515523?text=Assalamualaikum%2C%20saya%20ingin%20bertanya%20tentang%20homestay." class="nav-cta" target="_blank">Tempah Sekarang</a></li>
+</ul>
+<button class="hamburger" id="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')">
+<span></span><span></span><span></span>
+</button>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+<div class="hero-inner">
+<div class="hero-content">
+<div class="hero-badge">⭐ Pilihan Keluarga Malaysia</div>
+<h1>Nikmati Penginapan Selesa Seperti Di <em>Rumah Sendiri</em></h1>
+<p>Homestay moden, bersih dan lengkap untuk percutian yang sempurna. Sesuai untuk keluarga, pasangan dan pelancong — rasa keselesaan sejati di setiap penginapan.</p>
+<div class="hero-buttons">
+<a href="#homestay" class="btn btn-primary">🏠 Lihat Homestay</a>
+<a href="#harga" class="btn btn-outline">Tempah Sekarang</a>
+<a href="https://wa.me/60145515523?text=Assalamualaikum%2C%20saya%20ingin%20bertanya%20tentang%20homestay." class="btn btn-whatsapp" target="_blank">
+<svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+WhatsApp Kami
+</a>
+</div>
+</div>
+<div class="hero-visual">
+<div class="hero-image-main">
+<div class="hero-image-placeholder">
+<!-- Gantikan dengan: <img src="gambar-hero.jpg" alt="Homestay"> -->
+<!--<p style="margin-top:80px;text-align:center">Letakkan gambar utama<br>homestay di sini</p>-->
+    <img src="img/main.jpg" alt="Homestay">
+</div>
+</div>
+<div class="hero-stats">
+<div class="hero-stat"><div class="hero-stat-number">500+</div><div class="hero-stat-label">Tetamu Gembira</div></div>
+<div class="hero-stat"><div class="hero-stat-number">4.9</div><div class="hero-stat-label">Rating Purata</div></div>
+<div class="hero-stat"><div class="hero-stat-number">3</div><div class="hero-stat-label">Unit Tersedia</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SENARAI HOMESTAY -->
+<section class="section listings-section" id="homestay">
+<div class="section-inner">
+<div class="section-header">
+<div class="section-tag">Pilihan Homestay</div>
+<h2 class="section-title">Pilih Homestay Idaman Anda</h2>
+<p class="section-subtitle">Setiap unit dilengkapi kemudahan moden untuk keselesaan maksimum sepanjang penginapan anda.</p>
+</div>
+
+<!-- Homestay #01 -->
+<div class="listing-card animate-on-scroll">
+<div class="listing-number"><div class="listing-number-badge">01</div><div class="listing-number-text">Homestay</div></div>
+<div class="listing-content">
+<h3 class="listing-name">Homestay A03-11</h3>
+<!--<p class="listing-tagline">Suasana tenang dan damai, sesuai untuk keluarga yang inginkan ketenangan.</p>-->
+<div class="listing-gallery">
+    <!--<div class="gallery-item"><div class="gallery-item-icon">🛏️</div><div class="gallery-item-label">Bilik Tidur</div></div>-->
+    <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A03-11/bilik tidur.jpg" alt="Bilik Tidur"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+    <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A03-11/dapur.jpg" alt="dapur"></div><div class="gallery-item-label">Dapur</div></div>
+    <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A03-11/ruang tamu.jpg" alt="ruang tamu"></div><div class="gallery-item-label">Ruang Tamu</div></div>
+<div class="gallery-item"><div class="gallery-item-icon"><img src="img/A03-11/view.jpg" alt="balkoni"></div><div class="gallery-item-label">Balkoni</div></div>
+<!--<div class="gallery-item"><div class="gallery-item-icon">🛋️</div><div class="gallery-item-label">Ruang Tamu</div></div>
+<div class="gallery-item"><div class="gallery-item-icon">🚿</div><div class="gallery-item-label">Bilik Air</div></div>-->
+</div>
+<div class="listing-features">
+<span class="feature-tag">🛏️ 1 King + 2 Single / 2 Queen</span>
+<span class="feature-tag">❄️ Bilik Berhawa Dingin</span>
+<span class="feature-tag">📶 Netflix + WiFi Percuma</span>
+<span class="feature-tag">📺 Smart TV</span>
+<span class="feature-tag">🍳 Dapur Lengkap</span>
+<span class="feature-tag">🅿️ Parking Percuma</span>
+<span class="feature-tag">💇 Pengering Rambut</span>
+<span class="feature-tag">👔 Seterika Baju</span>
+<span class="feature-tag">🧺 Papan Seterika</span>
+<span class="feature-tag">🚿 Pemanas Air</span>
+<span class="feature-tag">🍚 Periuk Nasi Pelbagai Guna</span>
+<span class="feature-tag">☕ Set Kopi & Teh Percuma</span>
+    <span class="feature-tag">🧺 Mesin Basuh</span>
+</div>
+<div class="listing-buttons">
+<a href="#harga" class="btn btn-primary btn-sm">Tempah Sekarang</a>
+    <a href="https://wa.me/60145515523?text=Assalamualaikum%2C%20saya%20berminat%20untuk%20tempah%20Homestay%20A03-11." class="btn btn-whatsapp btn-sm" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+        WhatsApp Sekarang
+    </a>
+</div>
+</div>
+</div>
+
+<!-- Homestay #02 -->
+<div class="listing-card animate-on-scroll">
+<div class="listing-number"><div class="listing-number-badge">02</div><div class="listing-number-text">Homestay</div></div>
+<div class="listing-content">
+<h3 class="listing-name">Homestay A13A-10</h3>
+<!--<p class="listing-tagline">Ruang yang elegan dan luas, dilengkapi balkoni dengan pemandangan indah.</p>-->
+<div class="listing-gallery">
+<!--<div class="gallery-item"><div class="gallery-item-icon">🛏️</div><div class="gallery-item-label">Bilik Utama</div></div>
+<div class="gallery-item"><div class="gallery-item-icon">🍽️</div><div class="gallery-item-label">Ruang Makan</div></div>
+<div class="gallery-item"><div class="gallery-item-icon">🌅</div><div class="gallery-item-label">Balkoni</div></div>-->
+    <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A13A-10/bilik.jpg" alt="Bilik"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+    <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A13A-10/ruang tamu2.jpg" alt="ruang"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+    <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A13A-10/dapur.jpg" alt="dapur"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+    <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A13A-10/tandas.jpg" alt="tandas"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+</div>
+<div class="listing-features">
+<span class="feature-tag">🛏️ 1 King + 2 Single / 2 Queen</span>
+<span class="feature-tag">❄️ Bilik Berhawa Dingin</span>
+    <span class="feature-tag">🛡️ Keselamatan 24 Jam</span>
+    <span class="feature-tag">❄️ Bilik Berhawa Dingin</span>
+    <span class="feature-tag">📶 Netflix + WiFi Percuma</span>
+    <span class="feature-tag">📺 Smart TV</span>
+    <span class="feature-tag">🍳 Dapur Lengkap</span>
+    <span class="feature-tag">🅿️ Parking Percuma</span>
+    <span class="feature-tag">💇 Pengering Rambut</span>
+    <span class="feature-tag">👔 Seterika Baju</span>
+    <span class="feature-tag">🧺 Papan Seterika</span>
+    <span class="feature-tag">🚿 Pemanas Air</span>
+    <span class="feature-tag">🍚 Periuk Nasi Pelbagai Guna</span>
+    <span class="feature-tag">☕ Set Kopi & Teh Percuma</span>
+    <span class="feature-tag">🧺 Mesin Basuh</span>
+</div>
+<div class="listing-buttons">
+<a href="#harga" class="btn btn-primary btn-sm">Tempah Sekarang</a>
+    <a href="https://wa.me/60145515523?text=Assalamualaikum%2C%20saya%20berminat%20untuk%20tempah%20Homestay%20Seri%20A13A-10." class="btn btn-whatsapp btn-sm" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+        WhatsApp Sekarang
+    </a>
+</div>
+</div>
+</div>
+
+<!-- Homestay #03 -->
+<div class="listing-card animate-on-scroll">
+<div class="listing-number"><div class="listing-number-badge">03</div><div class="listing-number-text">Homestay</div></div>
+<div class="listing-content">
+<h3 class="listing-name">Homestay A17-12</h3>
+<!--<p class="listing-tagline">Reka bentuk moden dengan keselamatan 24 jam, sesuai untuk pasangan dan keluarga kecil.</p>-->
+<div class="listing-gallery">
+<!--<div class="gallery-item"><div class="gallery-item-icon">🛏️</div><div class="gallery-item-label">Bilik Moden</div></div>
+<div class="gallery-item"><div class="gallery-item-icon">☕</div><div class="gallery-item-label">Ruang Santai</div></div>
+<div class="gallery-item"><div class="gallery-item-icon">🔒</div><div class="gallery-item-label">Keselamatan</div></div>-->
+    <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A17-12/katil.jpg" alt="katil"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+    <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A17-12/ruangtamu.jpg" alt="ruangtamu"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+    <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A17-12/dapur.jpg" alt="dapur"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+    <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A17-12/view.jpg" alt="view"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+</div>
+<div class="listing-features">
+    <span class="feature-tag">🛏️ 1 King + 2 Single / 2 Queen</span>
+    <span class="feature-tag">❄️ Bilik Berhawa Dingin</span>
+    <span class="feature-tag">📶 Netflix + WiFi Percuma</span>
+    <span class="feature-tag">📺 Smart TV</span>
+    <span class="feature-tag">🍳 Dapur Lengkap</span>
+    <span class="feature-tag">🅿️ Parking Percuma</span>
+    <span class="feature-tag">💇 Pengering Rambut</span>
+    <span class="feature-tag">👔 Seterika Baju</span>
+    <span class="feature-tag">🧺 Papan Seterika</span>
+    <span class="feature-tag">🚿 Pemanas Air</span>
+    <span class="feature-tag">🍚 Periuk Nasi Pelbagai Guna</span>
+    <span class="feature-tag">☕ Set Kopi & Teh Percuma</span>
+    <span class="feature-tag">🧺 Mesin Basuh</span>
+</div>
+<div class="listing-buttons">
+<a href="#harga" class="btn btn-primary btn-sm">Tempah Sekarang</a>
+    <a href="https://wa.me/60145515523?text=Assalamualaikum%2C%20saya%20berminat%20untuk%20tempah%20Homestay%20A17-12." class="btn btn-whatsapp btn-sm" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+        WhatsApp Sekarang
+    </a>
+</div>
+</div>
+</div>
+
+    <!-- Homestay #04 -->
+    <div class="listing-card animate-on-scroll">
+        <div class="listing-number"><div class="listing-number-badge">04</div><div class="listing-number-text">Homestay</div></div>
+        <div class="listing-content">
+            <h3 class="listing-name">Homestay A07-10</h3>
+            <!--<p class="listing-tagline">Reka bentuk moden dengan keselamatan 24 jam, sesuai untuk pasangan dan keluarga kecil.</p>-->
+            <div class="listing-gallery">
+                <!--<div class="gallery-item"><div class="gallery-item-icon">🛏️</div><div class="gallery-item-label">Bilik Moden</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon">☕</div><div class="gallery-item-label">Ruang Santai</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon">🔒</div><div class="gallery-item-label">Keselamatan</div></div>-->
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A07-10/katil.jpg" alt="katil"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A07-10/katil2.jpg" alt="katil"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A07-10/ruangtamu.jpg" alt="katil"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A18-10/tandas.jpg" alt="katil"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+            </div>
+            <div class="listing-features">
+                <span class="feature-tag">🛏️ 1 King + 2 Single / 2 Queen</span>
+                <span class="feature-tag">❄️ Bilik Berhawa Dingin</span>
+                <span class="feature-tag">📶 Netflix + WiFi Percuma</span>
+                <span class="feature-tag">📺 Smart TV</span>
+                <span class="feature-tag">🍳 Dapur Lengkap</span>
+                <span class="feature-tag">🅿️ Parking Percuma</span>
+                <span class="feature-tag">💇 Pengering Rambut</span>
+                <span class="feature-tag">👔 Seterika Baju</span>
+                <span class="feature-tag">🧺 Papan Seterika</span>
+                <span class="feature-tag">🚿 Pemanas Air</span>
+                <span class="feature-tag">🍚 Periuk Nasi Pelbagai Guna</span>
+                <span class="feature-tag">☕ Set Kopi & Teh Percuma</span>
+                <span class="feature-tag">🧺 Mesin Basuh</span>
+            </div>
+            <div class="listing-buttons">
+                <a href="#harga" class="btn btn-primary btn-sm">Tempah Sekarang</a>
+                <a href="https://wa.me/60145515523?text=Assalamualaikum%2C%20saya%20berminat%20untuk%20tempah%20Homestay%20A07-10." class="btn btn-whatsapp btn-sm" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+                    WhatsApp Sekarang
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Homestay #05 -->
+    <div class="listing-card animate-on-scroll">
+        <div class="listing-number"><div class="listing-number-badge">05</div><div class="listing-number-text">Homestay</div></div>
+        <div class="listing-content">
+            <h3 class="listing-name">Homestay A18-10</h3>
+            <!--<p class="listing-tagline">Reka bentuk moden dengan keselamatan 24 jam, sesuai untuk pasangan dan keluarga kecil.</p>-->
+            <div class="listing-gallery">
+                <!--<div class="gallery-item"><div class="gallery-item-icon">🛏️</div><div class="gallery-item-label">Bilik Moden</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon">☕</div><div class="gallery-item-label">Ruang Santai</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon">🔒</div><div class="gallery-item-label">Keselamatan</div></div>-->
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A18-10/katil.jpg" alt="katil"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A18-10/dapur.jpg" alt="katil"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A18-10/view.jpg" alt="katil"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A18-10/tandas.jpg" alt="katil"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+            </div>
+            <div class="listing-features">
+                <span class="feature-tag">🛏️ 1 King + 2 Single / 2 Queen</span>
+                <span class="feature-tag">❄️ Bilik Berhawa Dingin</span>
+                <span class="feature-tag">📶 Netflix + WiFi Percuma</span>
+                <span class="feature-tag">📺 Smart TV</span>
+                <span class="feature-tag">🍳 Dapur Lengkap</span>
+                <span class="feature-tag">🅿️ Parking Percuma</span>
+                <span class="feature-tag">💇 Pengering Rambut</span>
+                <span class="feature-tag">👔 Seterika Baju</span>
+                <span class="feature-tag">🧺 Papan Seterika</span>
+                <span class="feature-tag">🚿 Pemanas Air</span>
+                <span class="feature-tag">🍚 Periuk Nasi Pelbagai Guna</span>
+                <span class="feature-tag">☕ Set Kopi & Teh Percuma</span>
+                <span class="feature-tag">🧺 Mesin Basuh</span>
+            </div>
+            <div class="listing-buttons">
+                <a href="#harga" class="btn btn-primary btn-sm">Tempah Sekarang</a>
+                <a href="https://wa.me/60145515523?text=Assalamualaikum%2C%20saya%20berminat%20untuk%20tempah%20Homestay%20A18-10." class="btn btn-whatsapp btn-sm" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+                    WhatsApp Sekarang
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Homestay #06 -->
+    <div class="listing-card animate-on-scroll">
+        <div class="listing-number"><div class="listing-number-badge">06</div><div class="listing-number-text">Homestay</div></div>
+        <div class="listing-content">
+            <h3 class="listing-name">Homestay A11-13</h3>
+            <!--<p class="listing-tagline">Reka bentuk moden dengan keselamatan 24 jam, sesuai untuk pasangan dan keluarga kecil.</p>-->
+            <div class="listing-gallery">
+                <!--<div class="gallery-item"><div class="gallery-item-icon">🛏️</div><div class="gallery-item-label">Bilik Moden</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon">☕</div><div class="gallery-item-label">Ruang Santai</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon">🔒</div><div class="gallery-item-label">Keselamatan</div></div>-->
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A11-13/katil.jpg" alt="katil"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A11-13/ruangtamu.jpg" alt="katil"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A11-13/dapur.jpg" alt="katil"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A11-13/tandas.jpg" alt="katil"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+            </div>
+            <div class="listing-features">
+                <span class="feature-tag">🛏️ 1 King + 2 Single / 2 Queen</span>
+                <span class="feature-tag">❄️ Bilik Berhawa Dingin</span>
+                <span class="feature-tag">📶 Netflix + WiFi Percuma</span>
+                <span class="feature-tag">📺 Smart TV</span>
+                <span class="feature-tag">🍳 Dapur Lengkap</span>
+                <span class="feature-tag">🅿️ Parking Percuma</span>
+                <span class="feature-tag">💇 Pengering Rambut</span>
+                <span class="feature-tag">👔 Seterika Baju</span>
+                <span class="feature-tag">🧺 Papan Seterika</span>
+                <span class="feature-tag">🚿 Pemanas Air</span>
+                <span class="feature-tag">🍚 Periuk Nasi Pelbagai Guna</span>
+                <span class="feature-tag">☕ Set Kopi & Teh Percuma</span>
+                <span class="feature-tag">🧺 Mesin Basuh</span>
+            </div>
+            <div class="listing-buttons">
+                <a href="#harga" class="btn btn-primary btn-sm">Tempah Sekarang</a>
+                <a href="https://wa.me/60145515523?text=Assalamualaikum%2C%20saya%20berminat%20untuk%20tempah%20Homestay%20A11-13." class="btn btn-whatsapp btn-sm" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+                    WhatsApp Sekarang
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Homestay #07 -->
+    <div class="listing-card animate-on-scroll">
+        <div class="listing-number"><div class="listing-number-badge">07</div><div class="listing-number-text">Homestay</div></div>
+        <div class="listing-content">
+            <h3 class="listing-name">Homestay A11-12</h3>
+            <!--<p class="listing-tagline">Reka bentuk moden dengan keselamatan 24 jam, sesuai untuk pasangan dan keluarga kecil.</p>-->
+            <div class="listing-gallery">
+                <!--<div class="gallery-item"><div class="gallery-item-icon">🛏️</div><div class="gallery-item-label">Bilik Moden</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon">☕</div><div class="gallery-item-label">Ruang Santai</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon">🔒</div><div class="gallery-item-label">Keselamatan</div></div>-->
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A11-12/katil.jpg" alt="katil"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A11-12/ruangtamu.jpg" alt="ruangtamu"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A11-12/dapur.jpg" alt="dapur"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A11-12/view.jpg" alt="view"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+            </div>
+            <div class="listing-features">
+                <span class="feature-tag">🛏️ 1 King + 2 Single / 2 Queen</span>
+                <span class="feature-tag">❄️ Bilik Berhawa Dingin</span>
+                <span class="feature-tag">📶 Netflix + WiFi Percuma</span>
+                <span class="feature-tag">📺 Smart TV</span>
+                <span class="feature-tag">🍳 Dapur Lengkap</span>
+                <span class="feature-tag">🅿️ Parking Percuma</span>
+                <span class="feature-tag">💇 Pengering Rambut</span>
+                <span class="feature-tag">👔 Seterika Baju</span>
+                <span class="feature-tag">🧺 Papan Seterika</span>
+                <span class="feature-tag">🚿 Pemanas Air</span>
+                <span class="feature-tag">🍚 Periuk Nasi Pelbagai Guna</span>
+                <span class="feature-tag">☕ Set Kopi & Teh Percuma</span>
+                <span class="feature-tag">🧺 Mesin Basuh</span>
+            </div>
+            <div class="listing-buttons">
+                <a href="#harga" class="btn btn-primary btn-sm">Tempah Sekarang</a>
+                <a href="https://wa.me/60145515523?text=Assalamualaikum%2C%20saya%20berminat%20untuk%20tempah%20Homestay%20A11-12." class="btn btn-whatsapp btn-sm" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+                    WhatsApp Sekarang
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Homestay #08 -->
+    <div class="listing-card animate-on-scroll">
+        <div class="listing-number"><div class="listing-number-badge">08</div><div class="listing-number-text">Homestay</div></div>
+        <div class="listing-content">
+            <h3 class="listing-name">Homestay A10-13A</h3>
+            <!--<p class="listing-tagline">Reka bentuk moden dengan keselamatan 24 jam, sesuai untuk pasangan dan keluarga kecil.</p>-->
+            <div class="listing-gallery">
+                <!--<div class="gallery-item"><div class="gallery-item-icon">🛏️</div><div class="gallery-item-label">Bilik Moden</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon">☕</div><div class="gallery-item-label">Ruang Santai</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon">🔒</div><div class="gallery-item-label">Keselamatan</div></div>-->
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A10-13A/ruangtamu.jpg" alt="katil"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A10-13A/dapur.jpg" alt="ruangtamu"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A10-13A/tandas.jpg" alt="dapur"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+                <div class="gallery-item"><div class="gallery-item-icon"><img src="img/A10-13A/view.jpg" alt="view"></div><div class="gallery-item-label">Bilik Tidur</div></div>
+            </div>
+            <div class="listing-features">
+                <span class="feature-tag">🛏️ 1 King + 2 Single / 2 Queen</span>
+                <span class="feature-tag">❄️ Bilik Berhawa Dingin</span>
+                <span class="feature-tag">📶 Netflix + WiFi Percuma</span>
+                <span class="feature-tag">📺 Smart TV</span>
+                <span class="feature-tag">🍳 Dapur Lengkap</span>
+                <span class="feature-tag">🅿️ Parking Percuma</span>
+                <span class="feature-tag">💇 Pengering Rambut</span>
+                <span class="feature-tag">👔 Seterika Baju</span>
+                <span class="feature-tag">🧺 Papan Seterika</span>
+                <span class="feature-tag">🚿 Pemanas Air</span>
+                <span class="feature-tag">🍚 Periuk Nasi Pelbagai Guna</span>
+                <span class="feature-tag">☕ Set Kopi & Teh Percuma</span>
+                <span class="feature-tag">🧺 Mesin Basuh</span>
+            </div>
+            <div class="listing-buttons">
+                <a href="#harga" class="btn btn-primary btn-sm">Tempah Sekarang</a>
+                <a href="https://wa.me/60145515523?text=Assalamualaikum%2C%20saya%20berminat%20untuk%20tempah%20Homestay%20A10-13A." class="btn btn-whatsapp btn-sm" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+                    WhatsApp Sekarang
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- KENAPA PILIH KAMI -->
+<section class="section why-section" id="kenapa">
+<div class="section-inner">
+<div class="section-header">
+<div class="section-tag">Kelebihan Kami</div>
+<h2 class="section-title">Kenapa Pilih Homestay Kami?</h2>
+<p class="section-subtitle">Kami komited memberikan pengalaman penginapan terbaik untuk setiap tetamu.</p>
+</div>
+<div class="why-grid">
+<div class="why-card animate-on-scroll"><div class="why-icon">✨</div><h3>Bersih & Selesa</h3><p>Setiap unit dibersihkan dengan teliti sebelum ketibaan anda. Keselesaan anda adalah keutamaan kami.</p></div>
+<div class="why-card animate-on-scroll"><div class="why-icon">📍</div><h3>Lokasi Strategik</h3><p>Berdekatan pusat bandar, restoran, dan tarikan pelancong utama. Mudah diakses dari mana sahaja.</p></div>
+<div class="why-card animate-on-scroll"><div class="why-icon">🏖️</div><h3>View Laut & Pantai</h3><p>Bangun pagi terus nampak view laut, petang lepak sambil angin pantai… memang healing habis! 😍</p></div>
+<div class="why-card animate-on-scroll"><div class="why-icon">💰</div><h3>Harga Berpatutan</h3><p>Nikmati kemudahan hotel pada harga homestay. Nilai terbaik untuk wang anda tanpa kompromi kualiti.</p></div>
+<div class="why-card animate-on-scroll"><div class="why-icon">💛</div><h3>Layanan Mesra</h3><p>Kami sentiasa sedia membantu sebelum, semasa dan selepas penginapan. Tetamu kami adalah keluarga kami.</p></div>
+</div>
+<div class="why-quote animate-on-scroll">
+<p>"Kami tidak sekadar menyediakan tempat menginap — kami mencipta kenangan indah untuk setiap keluarga yang datang."</p>
+</div>
+</div>
+</section>
+
+<!-- KEMUDAHAN LOKASI -->
+<section class="section facility-section" id="kemudahan">
+<div class="section-inner">
+<div class="section-header">
+<div class="section-tag">Kemudahan</div>
+<h2 class="section-title">Kemudahan Di Sekitar Lokasi</h2>
+<p class="section-subtitle">Pelbagai kemudahan tersedia di kawasan sekitar untuk keselesaan penginapan anda.</p>
+</div>
+<div class="facility-grid">
+<div class="facility-item animate-on-scroll"><img src="img/facility/IMG_8304.jpg" alt="Kemudahan 1"></div>
+<div class="facility-item animate-on-scroll"><img src="img/facility/IMG_8309.jpg" alt="Kemudahan 2"></div>
+<div class="facility-item animate-on-scroll"><img src="img/facility/IMG_8310.jpg" alt="Kemudahan 3"></div>
+<div class="facility-item animate-on-scroll"><img src="img/facility/IMG_8315.jpg" alt="Kemudahan 4"></div>
+<div class="facility-item animate-on-scroll"><img src="img/facility/IMG_8319.jpg" alt="Kemudahan 5"></div>
+<div class="facility-item animate-on-scroll"><img src="img/facility/IMG_8321.jpg" alt="Kemudahan 6"></div>
+<div class="facility-item animate-on-scroll"><img src="img/facility/IMG_8324.jpg" alt="Kemudahan 7"></div>
+<div class="facility-item animate-on-scroll"><img src="img/facility/IMG_8325.jpg" alt="Kemudahan 8"></div>
+<div class="facility-item animate-on-scroll"><img src="img/facility/IMG_8326.jpg" alt="Kemudahan 9"></div>
+<div class="facility-item animate-on-scroll"><img src="img/facility/photo_2026-02-14_21-56-35.jpg" alt="Kemudahan 11"></div>
+</div>
+</div>
+</section>
+
+<!-- HARGA -->
+<section class="section pricing-section" id="harga">
+<div class="section-inner">
+<div class="section-header">
+<div class="section-tag">Promo Ramadhan</div>
+<h2 class="section-title">Promo Ramadhan</h2>
+<p class="section-subtitle">Bermula 22/2/2026 – 18/3/2026. Tawaran istimewa untuk penginapan sepanjang bulan Ramadhan!</p>
+</div>
+<div class="pricing-grid">
+<div class="pricing-card animate-on-scroll">
+<h3>Weekday</h3>
+<div class="pricing-price">RM185 <span>/ malam</span></div>
+<p class="pricing-note"><s style="color:var(--text-light)">RM230</s> — Jimat RM45!</p>
+<ul class="pricing-features">
+<li><span style="color:var(--whatsapp);font-weight:bold">✓</span> Ahad – Khamis</li>
+<li><span style="color:var(--whatsapp);font-weight:bold">✓</span> WiFi Percuma</li>
+<li><span style="color:var(--whatsapp);font-weight:bold">✓</span> Bilik Berhawa Dingin</li>
+<li><span style="color:var(--whatsapp);font-weight:bold">✓</span> Parking Percuma</li>
+</ul>
+<a href="https://wa.me/60145515523?text=Assalamualaikum%2C%20saya%20berminat%20Promo%20Ramadhan%20Weekday%20RM185.%20Boleh%20saya%20tahu%20ketersediaan%3F" class="btn btn-whatsapp btn-sm" style="width:100%;justify-content:center" target="_blank">Tempah via WhatsApp</a>
+</div>
+<div class="pricing-card featured animate-on-scroll">
+<h3>3 Hari 2 Malam</h3>
+<div class="pricing-price">RM300 <span>/ pakej</span></div>
+<p class="pricing-note">Tawaran terbaik Ramadhan!</p>
+<ul class="pricing-features">
+<li><span style="color:var(--whatsapp);font-weight:bold">✓</span> 3 Hari 2 Malam</li>
+<li><span style="color:var(--whatsapp);font-weight:bold">✓</span> WiFi Percuma</li>
+<li><span style="color:var(--whatsapp);font-weight:bold">✓</span> Bilik Berhawa Dingin</li>
+<li><span style="color:var(--whatsapp);font-weight:bold">✓</span> Parking Percuma</li>
+</ul>
+<a href="https://wa.me/60145515523?text=Assalamualaikum%2C%20saya%20berminat%20Promo%20Ramadhan%203H2M%20RM300.%20Boleh%20saya%20tahu%20ketersediaan%3F" class="btn btn-whatsapp btn-sm" style="width:100%;justify-content:center" target="_blank">Tempah via WhatsApp</a>
+</div>
+<div class="pricing-card animate-on-scroll">
+<h3>Weekend</h3>
+<div class="pricing-price">RM230 <span>/ malam</span></div>
+<p class="pricing-note"><s style="color:var(--text-light)">RM280</s> — Jimat RM50!</p>
+<ul class="pricing-features">
+<li><span style="color:var(--whatsapp);font-weight:bold">✓</span> Jumaat – Sabtu</li>
+<li><span style="color:var(--whatsapp);font-weight:bold">✓</span> WiFi Percuma</li>
+<li><span style="color:var(--whatsapp);font-weight:bold">✓</span> Bilik Berhawa Dingin</li>
+<li><span style="color:var(--whatsapp);font-weight:bold">✓</span> Parking Percuma</li>
+</ul>
+<a href="https://wa.me/60145515523?text=Assalamualaikum%2C%20saya%20berminat%20Promo%20Ramadhan%20Weekend%20RM230.%20Boleh%20saya%20tahu%20ketersediaan%3F" class="btn btn-whatsapp btn-sm" style="width:100%;justify-content:center" target="_blank">Tempah via WhatsApp</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TESTIMONI -->
+<section class="section testimonial-section" id="testimoni">
+<div class="section-inner">
+<div class="section-header">
+<div class="section-tag">Testimoni</div>
+<h2 class="section-title">Apa Kata Tetamu Kami</h2>
+<p class="section-subtitle">Kepuasan tetamu adalah kebanggaan kami. Baca sendiri pengalaman mereka.</p>
+</div>
+<div class="testimonial-grid">
+<div class="testimonial-card animate-on-scroll">
+<div class="testimonial-chat-image"><img src="img/testimoni/photo_1_2026-02-14_21-34-18.jpg" alt="Testimoni pelanggan 1"></div>
+</div>
+<div class="testimonial-card animate-on-scroll">
+<div class="testimonial-chat-image"><img src="img/testimoni/photo_2_2026-02-14_21-34-18.jpg" alt="Testimoni pelanggan 2"></div>
+</div>
+<div class="testimonial-card animate-on-scroll">
+<div class="testimonial-chat-image"><img src="img/testimoni/photo_3_2026-02-14_21-34-18.jpg" alt="Testimoni pelanggan 3"></div>
+</div>
+<div class="testimonial-card animate-on-scroll">
+<div class="testimonial-chat-image"><img src="img/testimoni/photo_4_2026-02-14_21-34-18.jpg" alt="Testimoni pelanggan 4"></div>
+</div>
+<div class="testimonial-card animate-on-scroll">
+<div class="testimonial-chat-image"><img src="img/testimoni/photo_5_2026-02-14_21-34-18.jpg" alt="Testimoni pelanggan 5"></div>
+</div>
+<div class="testimonial-card animate-on-scroll">
+<div class="testimonial-chat-image"><img src="img/testimoni/photo_6_2026-02-14_21-34-18.jpg" alt="Testimoni pelanggan 6"></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CALENDAR -->
+<section class="section calendar-section" id="kalendar">
+<div class="section-inner">
+<div class="section-header">
+<div class="section-tag">Kalendar Tempahan</div>
+<h2 class="section-title">Semak Ketersediaan</h2>
+<p class="section-subtitle">Pilih tarikh penginapan anda dan buat tempahan dengan mudah.</p>
+</div>
+<div class="calendar-container">
+<div class="calendar-iframe-wrapper">
+<!-- LETAKKAN IFRAME KALENDAR DI SINI -->
+<!-- Contoh: <iframe src="https://calendly.com/your-link"></iframe> -->
+<!-- Contoh: <iframe src="https://calendar.google.com/calendar/embed?src=..."></iframe> -->
+<div class="calendar-placeholder">
+<div class="calendar-placeholder-icon">📅</div>
+<p>Ruang untuk iframe kalendar tempahan</p>
+<p style="margin-top:8px">Gantikan bahagian ini dengan <code>&lt;iframe&gt;</code> kalendar anda<br>(Google Calendar, Calendly, dll.)</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- HUBUNGI KAMI -->
+<section class="section contact-section" id="hubungi">
+<div class="section-inner">
+<div class="section-header">
+<div class="section-tag">Hubungi Kami</div>
+<h2 class="section-title">Kami Sedia Membantu</h2>
+<p class="section-subtitle">Jangan ragu untuk menghubungi kami. Kami sentiasa sedia menjawab pertanyaan anda.</p>
+</div>
+<div class="contact-grid">
+<div class="contact-info-card animate-on-scroll">
+<div class="contact-item">
+<div class="contact-icon">📱</div>
+<div class="contact-detail"><h4>WhatsApp / Telefon</h4><p><a href="https://wa.me/60145515523?text=Assalamualaikum%2C%20saya%20ingin%20bertanya%20tentang%20homestay." target="_blank">+6014-5515523</a></p><p>Balas dalam masa 30 minit!</p></div>
+</div>
+<div class="contact-item">
+<div class="contact-icon">📍</div>
+<div class="contact-detail"><h4>Lokasi</h4><p> Imperium Residence, Jalan Kampung Tanjung Lumpur, Perkampungan Tanjung Lumpur, 26060 Balok, Pahang, Malaysia.</p></div>
+</div>
+<div class="contact-item">
+<div class="contact-icon">🕐</div>
+<div class="contact-detail"><h4>Waktu Operasi</h4><p>7 HARI 24 JAM</p></div>
+</div>
+<div class="contact-item">
+<div class="contact-icon">📧</div>
+<div class="contact-detail"><h4>E-mel</h4><p><a href="mailto:email@avanzeelegacy.com">email@avanzeelegacy.com</a></p></div>
+</div>
+</div>
+<div class="contact-map animate-on-scroll">
+<!-- Gantikan dengan Google Maps iframe: <iframe src="https://www.google.com/maps/embed?pb=..." allowfullscreen></iframe> -->
+<!--<div class="map-placeholder"><div class="map-placeholder-icon">🗺️</div><p>Letakkan Google Maps iframe di sini</p></div>-->
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d307.0262740190623!2d103.34080950523048!3d3.801052329010143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31c8b00a09b0c7d9%3A0x472baf897564d906!2sJalan%20Kampung%20Tanjung%20Lumpur%2C%20Perkampungan%20Tanjung%20Lumpur%2C%2026060%20Kuantan%2C%20Pahang!5e1!3m2!1sen!2smy!4v1771143751669!5m2!1sen!2smy" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-inner">
+<div class="footer-logo">Avanzee <span>Legacy</span></div>
+<p>Penginapan selesa, mesra keluarga, harga berpatutan.</p>
+<div class="footer-links">
+<a href="#homestay">Homestay</a>
+<a href="#kenapa">Kenapa Kami</a>
+<a href="#kemudahan">Kemudahan</a>
+<a href="#harga">Harga</a>
+<a href="#testimoni">Testimoni</a>
+<a href="#hubungi">Hubungi</a>
+</div>
+<div class="footer-divider"></div>
+<p class="footer-copyright">&copy; 2026 Avanzee Legacy. Hak cipta terpelihara.</p>
+</div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<div class="floating-wa">
+<div class="floating-wa-tooltip">Ada soalan? Chat kami!</div>
+<a href="https://wa.me/60145515523?text=Assalamualaikum%2C%20saya%20ingin%20bertanya%20tentang%20homestay." class="floating-wa-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
+<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+</div>
+
+<script>
+// Scroll animation
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+});
+}, { threshold: 0.1 });
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+const nav = document.getElementById('navbar');
+if (window.scrollY > 50) { nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)'; }
+else { nav.style.boxShadow = 'none'; }
+});
+
+// Features toggle for mobile
+document.querySelectorAll('.listing-features').forEach(el => {
+const btn = document.createElement('button');
+btn.className = 'features-toggle';
+btn.textContent = '▼ Lihat Semua Kemudahan';
+btn.addEventListener('click', () => {
+const expanded = el.classList.toggle('expanded');
+btn.textContent = expanded ? '▲ Sembunyikan' : '▼ Lihat Semua Kemudahan';
+});
+el.parentNode.insertBefore(btn, el.nextSibling);
+});
+</script>
+</body>
+</html>
